@@ -1,0 +1,75 @@
+body{
+    background-color: rgb(240, 247, 247);
+}
+
+h2{
+    margin-left: 275px;
+}
+/*Borde Caja*/
+form {
+    border: 1px solid #79a2a3;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  
+  /*Cajas de texto*/
+  input[type=text], input[type=password] {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 10%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  /*Etiquetas Correo y Contraseña*/
+  label[for="uname"],label[for="psw"]{
+    margin: 8px 10%;
+  }
+
+  /*Boton de Acceso*/
+  button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 60%;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+  }
+  
+  /* Add a hover effect for buttons */
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  /*Contenedor de la imagen*/
+  .imgcontainer {
+    text-align: center;
+    margin: 10px 0 10px 0;
+  }
+  
+  /* Imagen */
+  img.avatar {
+    width: 30%;
+    border-radius: 50%;
+  }
+  
+  /* Add padding to container */
+  .container {
+    padding: 16px;
+  }
+  
+  /* The "Forgot password" text */
+  span.psw {
+    float: right;
+    padding-top: 30px;
+  }
+  
+  /* Change styles for span and cancel button on extra small screens */
+  @media screen and (max-width: 300px) {
+    span.psw {
+      display: block;
+      float: none;
+    }
+  }
