@@ -2,15 +2,15 @@
 $servidor="localhost";
 $username="root";
 $pwBD="";
-$nomBD="bd1";
+$nomBD="estuches_pinceles";
 //Conexion
 $bd=mysqli_connect($servidor,$username,$pwBD,$nomBD);
 
 if($bd->connect_error){
     die("La conexion fallo: ".$bd->connect_error);
 }
-/*
-$sql="SELECT * FROM login";
+
+$sql="SELECT * FROM prueba";
 $resul=$bd->query($sql);
 
 if(!$resul){
@@ -19,10 +19,11 @@ if(!$resul){
 
 while($row=$resul->fetch_assoc()){
     echo "
-    <td>$row[id]</td>
-    <td>$row[login]</td>
-    <td>$row[password]</td>
+    <td>$row[ID]</td>
+    <td>$row[Nombre]</td>
+    <td>$row[Precio]</td>
+    <td>$row[Existencia]</td>
     <td>Base de datos</td>
     ";
-*/
+}
 ?>

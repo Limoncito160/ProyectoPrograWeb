@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
     <title>Registro</title>
@@ -9,11 +10,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
     <div class="container my-5">
-    <h1 style="text-align: center;">Registro de Usuario</h1>
+        <h1 style="text-align: center;">Registro de Usuario</h1>
 
-    <form method="post">
+        <form method="post">
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Nombre(s): </label>
                 <div class="col-sm-6">
@@ -50,6 +52,20 @@
             </div>
 
             <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Estado: </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="estado">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Municipio: </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="municipio">
+                </div>
+            </div>
+
+            <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Dirección: </label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" name="direccion">
@@ -71,6 +87,17 @@
             </div>
 
             <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Tipo de Usuario: </label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="tipo_usuario">
+                        <option value="Cliente">Cliente</option>
+                        <option value="Admin">Administrador</option>
+                        <option value="Proveedor">Proveedor</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
                 <div class="offset-sm-3 col-sm-3 d-grid">
                     <button type="submit" class="btn btn-primary">Agregar</button>
                 </div>
@@ -78,7 +105,9 @@
                     <a class="btn btn-outline-primary" href="login.php" role="button">Cancelar<a>
                 </div>
             </div>
-    </form>
+
+        </form>
     </div>
 </body>
+
 </html>
