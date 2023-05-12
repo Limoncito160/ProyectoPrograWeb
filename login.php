@@ -11,7 +11,7 @@
 
 <h2>Iniciar Sesión</h2>
 
-<form action="/action_page.php" method="post">
+<form action="validar.php" method="post">
 <div class="imgcontainer">
     <img src="img/avatar.png" alt="Avatar" class="avatar">
 </div>
