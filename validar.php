@@ -1,26 +1,21 @@
 <?php
-$usuario=$_POST['uname'];
-$password=$_POST['psw'];
+// Incluir archivo de configuración de base de datos
+// include 'configuracion_db.php';
 
-$_SESSION['usuario']=$usuario;
+// Obtener datos del formulario de inicio de sesión
+$correo = $_POST['uname'];
+$contraseña = $_POST['psw'];
 
-include('proyecto.php');
-
-$consulta="SELECT * FROM login1 where login='$usuario' and password='$password'";
-$resul=mysqli_query($bd,$consulta);
-
-$mostrar = mysqli_fetch_array($resul);
-$filas=mysqli_num_rows($resul);
-
-if($filas){
-    include("home.php");
-}else{
-    ?>
-    <?php
-    include("login.php");
-    ?>
-    <h1 class="bad">¡Error en el Correo o la Contraseña!</h1>
-    <?php   
+// Validar que los campos no estén vacíos
+if (empty($correo) || empty($contraseña)) {
+  // Si los campos están vacíos, redirige al usuario de vuelta a la página de inicio de sesión
+  header("Location: login.php");
+  exit();
 }
-mysqli_free_result($resul);
-mysqli_close($bd);
+
+// Aquí agregarías cualquier otra validación adicional que necesites hacer, como verificar si el usuario y la contraseña son válidos
+
+// Si se ha autenticado correctamente, redirige al usuario a la página de inicio
+header("Location: home.php");
+exit();
+?>
