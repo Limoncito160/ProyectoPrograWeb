@@ -17,7 +17,14 @@
   <ul class="nav navbar-nav">
       <li class="active"><a href="home.php"><span class="glyphicon glyphicon-home"></span> Pagina Principal</a></li>
       <li><a href="articulos.php">Articulos</a></li>
-      <li class="active"><a href="#"><span class="glyphicon glyphicon-earphone"> Contacto</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="glyphicon glyphicon-earphone"> Contacto
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <p>Telefono: </p><a class="dropdown-item" href="#">999 555 4321</a>
+          <p>Correo: </p><a class="dropdown-item" href="#">artempresa@outlook.com</a>
+      </li>
     </ul>
     <u1 class="nav navbar-nav">
     <form class="nav navbar-nav">
