@@ -15,7 +15,7 @@
 
     <form method="post">
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Nombres: </label>
+                <label class="col-sm-3 col-form-label">Nombre(s): </label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" name="nombres">
                 </div>
@@ -46,6 +46,13 @@
                 <label class="col-sm-3 col-form-label">Telefono: </label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" name="telefono">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Dirección: </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="direccion">
                 </div>
             </div>
 
