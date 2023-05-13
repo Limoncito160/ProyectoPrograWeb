@@ -15,7 +15,7 @@
     <div class="container my-5">
         <h1 style="text-align: center;">Registro de Usuario</h1>
 
-        <form method="post">
+        <form method="post" action=procesar_registro.php>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Nombre(s): </label>
                 <div class="col-sm-6">
@@ -54,14 +54,63 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Estado: </label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="estado">
+                    <select class="form-control" class="form-control" name="nombre_estado">
+                        <?php
+                        $estados = array(
+                            "Aguascalientes",
+                            "Baja California",
+                            "Baja California Sur",
+                            "Campeche",
+                            "Chiapas",
+                            "Chihuahua",
+                            "Ciudad de México",
+                            "Coahuila",
+                            "Colima",
+                            "Durango",
+                            "México",
+                            "Guanajuato",
+                            "Guerrero",
+                            "Hidalgo",
+                            "Jalisco",
+                            "Michoacán",
+                            "Morelos",
+                            "Nayarit",
+                            "Nuevo León",
+                            "Oaxaca",
+                            "Puebla",
+                            "Querétaro",
+                            "Quintana Roo",
+                            "San Luis Potosí",
+                            "Sinaloa",
+                            "Sonora",
+                            "Tabasco",
+                            "Tamaulipas",
+                            "Tlaxcala",
+                            "Veracruz",
+                            "Yucatán",
+                            "Zacatecas"
+                        );
+
+                        foreach ($estados as $estado) {
+                            echo "<option value=\"$estado\">$estado</option>";
+                        }
+                        ?>
+                    </select>
+                    </select>
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Municipio: </label>
+                <label class="col-sm-3 col-form-label">Localidad: </label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="municipio">
+                    <input type="text" class="form-control" name="nombre_localidad">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Código Postal: </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="cp" pattern="[0-9]+">
                 </div>
             </div>
 
@@ -90,9 +139,8 @@
                 <label class="col-sm-3 col-form-label">Tipo de Usuario: </label>
                 <div class="col-sm-6">
                     <select class="form-control" name="tipo_usuario">
-                        <option value="Cliente">Cliente</option>
-                        <option value="Admin">Administrador</option>
-                        <option value="Proveedor">Proveedor</option>
+                        <option value="Usuario">Usuario</option>
+                        <option value="Administrador">Administrador</option>
                     </select>
                 </div>
             </div>
@@ -102,7 +150,7 @@
                     <button type="submit" class="btn btn-primary">Agregar</button>
                 </div>
                 <div class="offset-sm-3 col-sm-3 d-grid">
-                    <a class="btn btn-outline-primary" href="login.php" role="button">Cancelar<a>
+                    <a class="btn btn-outline-primary" href="procesar_registro.php" role="button">Cancelar<a>
                 </div>
             </div>
 
