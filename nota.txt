@@ -4,3 +4,5 @@ Prueba de actualización - Axel 9:34
 Prueba de actualización - Eduardo 9:56 11/05/2023
 
 Prueba de actualización día 2
+
+Agregado: Validacion de duplicidad de EMAIL y TELEFONO en procesar_registro.php
