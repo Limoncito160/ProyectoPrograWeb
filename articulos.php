@@ -51,16 +51,10 @@ include("header.php");
   <table>
     <thead>
       <tr>
-        <th>ID</th>
-        <th>ID Dirección</th>
-        <th>ID Rol</th>
-        <th>Nombres</th>
-        <th>Apellido Paterno</th>
-        <th>Apellido Materno</th>
-        <th>Fecha de nacimiento</th>
-        <th>Teléfono</th>
-        <th>Email</th>
-        <th>Contraseña</th>
+        <th>NOMBRE DEL ARTICULO</th>
+        <th>CANTIDAD EN STOCK</th>
+        <th>PRECIO</th>
+        <th>BOTON</th>
       </tr>
     </thead>
     <tbody>
@@ -74,23 +68,18 @@ include("header.php");
         exit();
       }
 
-      $sql = "SELECT * FROM USUARIOS";
+      $sql = "SELECT NOMBRE, EXISTENCIA, PRECIO FROM PRODUCTOS;";
       $result = mysqli_query($conexion, $sql);
 
       // verifica si se encontraron resultados
       if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
           echo "<tr>";
-          echo "<td>" . $row["ID_USUARIO"] . "</td>";
-          echo "<td>" . $row["ID_DIRECCION"] . "</td>";
-          echo "<td>" . $row["ID_ROL"] . "</td>";
-          echo "<td>" . $row["NOMBRES"] . "</td>";
-          echo "<td>" . $row["AP_PATERNO"] . "</td>";
-          echo "<td>" . $row["AP_MATERNO"] . "</td>";
-          echo "<td>" . $row["F_NACIMIENTO"] . "</td>";
-          echo "<td>" . $row["TELEFONO"] . "</td>";
-          echo "<td>" . $row["EMAIL"] . "</td>";
-          echo "<td>" . $row["PASSWORD"] . "</td>";
+          echo "<td>" . $row["NOMBRE"] . "</td>";
+          echo "<td>" . $row["EXISTENCIA"] . "</td>";
+          echo "<td>" . $row["PRECIO"] . "</td>";
+          echo "<td><a href='detalles_articulo.php?id=" . $row["NOMBRE"] . "'>Ver detalles</a></td>";
+
           echo "</tr>";
         }
       } else {
