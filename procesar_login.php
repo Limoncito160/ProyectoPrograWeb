@@ -1,5 +1,4 @@
 <?php
-// Incluir archivo de configuración de base de datos
 
 // Conexión a la base de datos
 $conexion = mysqli_connect("localhost", "root", "", "estuches_pinceles");
@@ -26,16 +25,17 @@ $valida_email = "SELECT * FROM USUARIOS WHERE EMAIL = '$correo' AND PASSWORD = '
 $result = mysqli_query($conexion, $valida_email);
 
 if ($result->num_rows > 0) {
-  echo "<script>alert('Se encontró al usuario')</script>";
+
+  // Iniciar sesión y almacenar el correo electrónico del usuario en una variable de sesión
+  session_start();
+  $_SESSION['correo'] = $correo;
+  include("home.php");
+
 
 } else {
-  echo "<script>alert('No se encontró a ningún usuario')</script>";
-
+  echo "<script>alert('ERROR: Datos incorrectos; verifica tu información.')</script>";
+  include("login.php");
 }
 
 // Aquí agregarías cualquier otra validación adicional que necesites hacer, como verificar si el usuario y la contraseña son válidos
-
-// Si se ha autenticado correctamente, redirige al usuario a la página de inicio
-//header("Location: home.php");
-//exit();
 ?>
