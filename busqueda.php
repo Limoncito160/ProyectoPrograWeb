@@ -1,8 +1,9 @@
-<?php
+<?php 
 session_start();
 $correo = $_SESSION['correo'];
 $id_rol = $_SESSION['id_rol'];
 include("header.php");
+$articulo_busqueda = $_POST['articulo_busqueda'];
 ?>
 
 <style>
@@ -54,7 +55,7 @@ include("header.php");
         <th>NOMBRE DEL ARTICULO</th>
         <th>CANTIDAD EN STOCK</th>
         <th>PRECIO</th>
-        <th></th>
+        <th>BOTON</th>
       </tr>
     </thead>
     <tbody>
@@ -68,7 +69,8 @@ include("header.php");
         exit();
       }
 
-      $sql = "SELECT NOMBRE, EXISTENCIA, CONCAT('$', PRECIO, ' MXN') AS PRECIO FROM PRODUCTOS;";
+      $sql = "SELECT NOMBRE, EXISTENCIA, CONCAT('$', PRECIO, ' MXN') AS PRECIO FROM PRODUCTOS WHERE NOMBRE LIKE '%$articulo_busqueda%';";
+      
       $result = mysqli_query($conexion, $sql);
 
       // verifica si se encontraron resultados
@@ -86,6 +88,7 @@ include("header.php");
         echo "<tr><td colspan='10'>No se encontraron resultados</td></tr>";
       }
       ?>
+
     </tbody>
   </table>
 
