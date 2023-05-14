@@ -1,5 +1,10 @@
+<?php
+include("header.php");
+?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
     <title>Registro Producto</title>
@@ -11,51 +16,68 @@
 </head>
 
 <body>
-    <div class="container my-5">
-        <h1 style="text-align: center;">Registro Productos</h1>
 
+    <body>
+        <div class="container my-5">
+            <h1 style="text-align: center;">Registro de un nuevo producto</h1>
+            <br> </br>
 
-        <form method="post" action=validar_registroProductos.php>
-            <div class="row mb-3">
-            <label for="proveedor">Proveedor</label>
-                <select name="provedor" id="proveedor">
-                    <option value="1">Proveedor</option>
-                </select>
-                <label class="col-sm-3 col-form-label">Proveedor: </label>
-            </div>
+            <form method="post" action=procesar_registro_producto.php>
 
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Producto: </label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="producto">
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Proveedor: </label>
+                    <div class="col-sm-6">
+                        <select class="form-control" name="proveedor">
+                            <option value="Plásticos Gonzalo S.A. de C.V.">Plásticos Gonzalo S.A. de C.V.</option>
+                            <option value="Arte de mi parte S.A. de C.V.">Arte de mi parte S.A. de C.V.</option>
+                            <option value="Manualidades y plásticos C.V.">Manualidades y plásticos C.V.</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Precio </label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="precio">
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Nombre: </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="nombre">
+                    </div>
                 </div>
-            </div>
 
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Cantidad </label>
-                <div class="col-sm-6">
-                    <input type="number" class="form-control" name="Cantidad">
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Cantidad: </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="cantidad">
+                    </div>
                 </div>
-            </div>
 
-            <div class="row mb-3">
-                <div class="offset-sm-3 col-sm-3 d-grid">
-                    <button type="submit" class="btn btn-primary">Guardar Producto</button>
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Precio: </label>
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control" name="precio" step="0.01" min="0" max="9999.99"
+                            maxlength="8">
+                    </div>
                 </div>
-                <div class="offset-sm-3 col-sm-3 d-grid">
-                    <a class="btn btn-outline-primary" href="procesar_registro.php" role="button">Cancelar<a>
-                </div>
-            </div>
 
-        </form>
-    </div>
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Imagen: </label>
+                    <div class="col-sm-6">
+                        <input type="file" class="form-control" name="imagen">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="offset-sm-3 col-sm-3 d-grid">
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </div>
+                    <div class="offset-sm-3 col-sm-3 d-grid">
+                        <a class="btn btn-outline-primary" href="articulos.php" role="button">Cancelar<a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </body>
+
+
 </body>
 
 </html>

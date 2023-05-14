@@ -1,6 +1,7 @@
 <?php
 session_start();
 $correo = $_SESSION['correo'];
+$id_rol = $_SESSION['id_rol'];
 include("header.php");
 ?>
 
@@ -10,7 +11,8 @@ include("header.php");
     width: 100%;
   }
 
-  th, td {
+  th,
+  td {
     text-align: left;
     padding: 8px;
   }
@@ -36,6 +38,15 @@ include("header.php");
 
 <div class="container wider-container">
   <h1>Lista de productos que ofrece Pincheles</h1>
+
+  <?php
+  // Verifica si la sesión pertenece a un administrador
+  if ($_SESSION['id_rol'] == '601') {
+    ?>
+    <button><a href="registros_productos.php">Registrar un nuevo producto</a></button>
+    <?php
+  }
+  ?>
 
   <table>
     <thead>

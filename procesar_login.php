@@ -26,9 +26,14 @@ $result = mysqli_query($conexion, $valida_email);
 
 if ($result->num_rows > 0) {
 
-  // Iniciar sesión y almacenar el correo electrónico del usuario en una variable de sesión
+  // Obtener el campo ID_ROL de la fila encontrada
+  $fila = mysqli_fetch_assoc($result);
+  $id_rol = $fila['ID_ROL'];
+
+  // Iniciar sesión y almacenar el correo electrónico y el id_rol del usuario en variables de sesión
   session_start();
   $_SESSION['correo'] = $correo;
+  $_SESSION['id_rol'] = $id_rol;
   include("home.php");
 
 
