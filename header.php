@@ -13,7 +13,7 @@
 <body>
 <!--Barra de navegación-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: darkgray;">
-  <p class="navbar-brand disable" >Name_Compañia</p>
+  <p class="navbar-brand disable" >Pincheles S.A. de C.V.</p>
   <ul class="nav navbar-nav">
       <li class="active"><a href="home.php"><span class="glyphicon glyphicon-home"></span> Pagina Principal</a></li>
       <li><a href="articulos.php">Articulos</a></li>
