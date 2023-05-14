@@ -1,4 +1,7 @@
 <?php
+session_start();
+$correo = $_SESSION['correo'];
+$id_rol = $_SESSION['id_rol'];
 include("header.php");
 ?>
 
@@ -22,7 +25,7 @@ include("header.php");
             <h1 style="text-align: center;">Registro de un nuevo producto</h1>
             <br> </br>
 
-            <form method="post" action=procesar_registro_producto.php>
+            <form method="post" action="procesar_registro_producto.php" enctype="multipart/form-data">
 
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Proveedor: </label>
