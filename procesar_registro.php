@@ -1,16 +1,16 @@
 <?php
-  $nombres = $_POST['nombres'];
-  $ap_paterno = $_POST['ap_paterno'];
-  $ap_materno = $_POST['ap_materno'];
-  $f_nacimiento = $_POST['f_nacimiento'];
-  $telefono = $_POST['telefono'];
-  $nombre_estado = $_POST['nombre_estado'];
-  $nombre_localidad = $_POST['nombre_localidad'];
-  $cp = $_POST['cp'];
-  $direccion = $_POST['direccion'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $tipo_usuario = $_POST['tipo_usuario'];
+$nombres = $_POST['nombres'];
+$ap_paterno = $_POST['ap_paterno'];
+$ap_materno = $_POST['ap_materno'];
+$f_nacimiento = $_POST['f_nacimiento'];
+$telefono = $_POST['telefono'];
+$nombre_estado = $_POST['nombre_estado'];
+$nombre_localidad = $_POST['nombre_localidad'];
+$cp = $_POST['cp'];
+$direccion = $_POST['direccion'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+$tipo_usuario = $_POST['tipo_usuario'];
 
 /*
   echo "NOMBRES: " . $nombres . "<br/>";
@@ -34,7 +34,7 @@ $conexion = mysqli_connect("localhost", "root", "", "estuches_pinceles");
 
 // Verificar conexión
 if (mysqli_connect_errno()) {
-    echo "Error de conexión a la base de datos: " . mysqli_connect_error(). "<br/>";
+    echo "Error de conexión a la base de datos: " . mysqli_connect_error() . "<br/>";
     exit();
 }
 
@@ -42,12 +42,34 @@ if (mysqli_connect_errno()) {
 //Valida duplicidad de EMAIL
 $valida_email = "SELECT * FROM USUARIOS WHERE EMAIL = '$email'";
 $result = mysqli_query($conexion, $valida_email);
-if (!$result -> num_rows > 0) {
+if (!$result->num_rows > 0) {
     //Valida duplicidad de TELEFONO
     $valida_telefono = "SELECT * FROM USUARIOS WHERE TELEFONO = '$telefono'";
     $result1 = mysqli_query($conexion, $valida_telefono);
-    if (!$result1 -> num_rows > 0) {
-        
+    if (!$result1->num_rows > 0) {
+
+        // Insertar la localidad
+        $insert_localidad = "INSERT INTO LOCALIDADES (NOMBRE, ID_ESTADO) VALUES ('$nombre_localidad', (SELECT ID_ESTADO FROM ESTADOS WHERE NOMBRE = '$nombre_estado'))";
+        if (mysqli_query($conexion, $insert_localidad)) {
+            echo "Registro insertado correctamente en la tabla LOCALIDADES. <br/>";
+        } else {
+            echo "Error al insertar registro en la tabla LOCALIDADES: " . mysqli_error($conexion) . "<br/>";
+            echo "$insert_localidad" . "<br/>";
+        }
+
+        // Insertar la dirección
+        $insert_direccion = "INSERT INTO DIRECCIONES (DIRECCION, CP, ID_LOCALIDAD) 
+        VALUES ('$direccion', '$cp' , 
+        (SELECT DISTINCT ID_LOCALIDAD FROM LOCALIDADES WHERE ID_ESTADO = 
+        (SELECT DISTINCT ID_ESTADO FROM ESTADOS WHERE NOMBRE = '$nombre_estado') LIMIT 1));";
+
+        if (mysqli_query($conexion, $insert_direccion)) {
+            echo "Registro insertado correctamente en la tabla DIRECCIONES. <br/>";
+        } else {
+            echo "Error al insertar registro en la tabla DIRECCIONES: " . mysqli_error($conexion) . "<br/>";
+            echo "$insert_direccion <br/>";
+        }
+
         // Insertar usuario
         $insert_usuario = "INSERT INTO USUARIOS (NOMBRES, AP_PATERNO, AP_MATERNO, F_NACIMIENTO, TELEFONO, EMAIL, PASSWORD, ID_DIRECCION, ID_ROL) 
         VALUES (
@@ -65,34 +87,13 @@ if (!$result -> num_rows > 0) {
             echo "$insert_usuario <br/>";
         }
 
-        // Insertar la dirección
-        $insert_direccion = "INSERT INTO DIRECCIONES (DIRECCION, CP, ID_LOCALIDAD) 
-        VALUES ('$direccion', '$cp' , 
-        (SELECT DISTINCT ID_LOCALIDAD FROM LOCALIDADES WHERE ID_ESTADO = 
-        (SELECT DISTINCT ID_ESTADO FROM ESTADOS WHERE NOMBRE = '$nombre_estado') LIMIT 1));";
-
-        if (mysqli_query($conexion, $insert_direccion)) {
-            echo "Registro insertado correctamente en la tabla DIRECCIONES. <br/>";
-        } else {
-            echo "Error al insertar registro en la tabla DIRECCIONES: " . mysqli_error($conexion) . "<br/>";
-            echo "$insert_direccion <br/>";
-        }
-
-        // Insertar la localidad
-        $insert_localidad = "INSERT INTO LOCALIDADES (NOMBRE, ID_ESTADO) VALUES ('$nombre_localidad', (SELECT ID_ESTADO FROM ESTADOS WHERE NOMBRE = '$nombre_estado'))";
-        if (mysqli_query($conexion, $insert_localidad)) {
-            echo "Registro insertado correctamente en la tabla LOCALIDADES. <br/>";
-        } else {
-            echo "Error al insertar registro en la tabla LOCALIDADES: " . mysqli_error($conexion) . "<br/>";
-            echo "$insert_localidad". "<br/>";
-        }
 
     } else {
-        echo "<script>alert('El Telefono Registrado ya Existe')</script>";
+        echo "<script>alert('ERROR: ¡El número de teléfono ya ha sido registrado por otro usuario!')</script>";
         include("registro.php");
     }
 } else {
-    echo "<script>alert('El Email Registrado ya Existe')</script>";
+    echo "<script>alert('ERROR: ¡El correo electrónico ya ha sido registrado por otro usuario!')</script>";
     include("registro.php");
 }
 
