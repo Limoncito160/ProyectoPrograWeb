@@ -11,7 +11,7 @@
 
 <h2>Iniciar Sesión</h2>
 
-<form action="validar.php" method="post">
+<form action="procesar_login.php" method="post">
 <div class="imgcontainer">
     <img src="img/avatar.png" alt="Avatar" class="avatar">
 </div>
@@ -19,10 +19,10 @@
 <div class="container">
     <!--Etiqueta y Caja de texto de Correo-->
     <label for="uname"><b>Correo Electronico</b></label>
-    <input type="text" placeholder="Correo@ejemplo.com" name="uname" required>
+    <input type="text" placeholder="Correo@ejemplo.com" name="email" required>
     <!--Etiqueta y Caja de texto de Contraseña-->
     <label for="psw"><b>Contraseña</b></label>
-    <input type="password" placeholder="***************" name="psw" required>
+    <input type="password" placeholder="***************" name="password" required>
     <!--Boton Acceso-->
     <button type="submit">Acceso</button>
 </div>

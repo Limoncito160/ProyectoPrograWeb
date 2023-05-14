@@ -12,23 +12,6 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $tipo_usuario = $_POST['tipo_usuario'];
 
-/*
-  echo "NOMBRES: " . $nombres . "<br/>";
-  echo "AP_PATERNO: " . $ap_paterno . "<br/>";
-  echo "AP_MATERNO: " . $ap_materno . "<br/>";
-  echo "F_NACIMIENTO: " . $f_nacimiento . "<br/>";
-  echo "TELEFONO: " . $telefono . "<br/>";
-  echo "NOMBRE_ESTADO: " . $nombre_estado . "<br/>";
-  echo "NOMBRE_LOCALIDAD: " . $nombre_localidad . "<br/>";
-  echo "DIRECCION: " . $direccion . "<br/>";
-  echo "EMAIL: " . $email . "<br/>";
-  echo "PASSWORD: " . $password . "<br/>";
-  echo "TIPO_USUARIO: " . $tipo_usuario . "<br/>";
-
-  echo "INSERT INTO LOCALIDADES (NOMBRE, ID_ESTADO) VALUES ('$nombre_localidad', (SELECT ID_ESTADO FROM ESTADOS WHERE NOMBRE = '$nombre_estado'))";
-*/
-
-
 // Conexión a la base de datos
 $conexion = mysqli_connect("localhost", "root", "", "estuches_pinceles");
 
@@ -37,7 +20,6 @@ if (mysqli_connect_errno()) {
     echo "Error de conexión a la base de datos: " . mysqli_connect_error() . "<br/>";
     exit();
 }
-
 
 //Valida duplicidad de EMAIL
 $valida_email = "SELECT * FROM USUARIOS WHERE EMAIL = '$email'";
@@ -51,7 +33,7 @@ if (!$result->num_rows > 0) {
         // Insertar la localidad
         $insert_localidad = "INSERT INTO LOCALIDADES (NOMBRE, ID_ESTADO) VALUES ('$nombre_localidad', (SELECT ID_ESTADO FROM ESTADOS WHERE NOMBRE = '$nombre_estado'))";
         if (mysqli_query($conexion, $insert_localidad)) {
-            echo "Registro insertado correctamente en la tabla LOCALIDADES. <br/>";
+            //echo "Registro insertado correctamente en la tabla LOCALIDADES. <br/>";
         } else {
             echo "Error al insertar registro en la tabla LOCALIDADES: " . mysqli_error($conexion) . "<br/>";
             echo "$insert_localidad" . "<br/>";
@@ -64,7 +46,7 @@ if (!$result->num_rows > 0) {
         (SELECT DISTINCT ID_ESTADO FROM ESTADOS WHERE NOMBRE = '$nombre_estado') LIMIT 1));";
 
         if (mysqli_query($conexion, $insert_direccion)) {
-            echo "Registro insertado correctamente en la tabla DIRECCIONES. <br/>";
+            //echo "Registro insertado correctamente en la tabla DIRECCIONES. <br/>";
         } else {
             echo "Error al insertar registro en la tabla DIRECCIONES: " . mysqli_error($conexion) . "<br/>";
             echo "$insert_direccion <br/>";
@@ -81,7 +63,7 @@ if (!$result->num_rows > 0) {
 
 
         if (mysqli_query($conexion, $insert_usuario)) {
-            echo "Registro insertado correctamente en la tabla USUARIOS. <br/>";
+            include("login.php");
         } else {
             echo "Error al insertar registro en la tabla USUARIOS: " . mysqli_error($conexion) . "<br/>";
             echo "$insert_usuario <br/>";
