@@ -142,4 +142,8 @@ INSERT INTO ESTADOS (NOMBRE) VALUES
 ('Puebla'), ('Querétaro'), ('Quintana Roo'), ('San Luis Potosí'), ('Sinaloa'), ('Sonora'), 
 ('Tabasco'), ('Tamaulipas'), ('Tlaxcala'), ('Veracruz'), ('Yucatán'), ('Zacatecas');
 
+INSERT INTO LOCALIDADES (ID_ESTADO, NOMBRE) VALUES ('412','Diximoxicity'), ('420', 'Miguel Hidalgo'), ('413', 'San Mateo Atenco');
+
+INSERT INTO DIRECCIONES (ID_LOCALIDAD, DIRECCION, CP) VALUES ('300' , 'Albert Einsten #4035', '80920'), ('301' , 'Fuentes del sol #023', '32400'), ('302' , 'Los ahuehuetes #12', '50235');
+
 INSERT INTO ROLES (NOMBRE) VALUES ('Usuario'), ('Administrador');
