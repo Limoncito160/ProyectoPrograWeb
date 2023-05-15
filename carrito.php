@@ -169,7 +169,9 @@ while ($fila1 = mysqli_fetch_assoc($sql1)) {
 					</tr>
 				<?php endforeach; ?>
 			</tbody>
+
 		</table>
+		
 	</div>
 
 </body>
