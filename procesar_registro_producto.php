@@ -12,7 +12,7 @@ $conexion = mysqli_connect("localhost", "root", "", "estuches_pinceles");
 //Insertar datos en PRODUCTOS
 $insert_productos = "INSERT INTO PRODUCTOS (NOMBRE, EXISTENCIA, PRECIO, ID_PROVEEDOR) VALUES ('$nombre','$cantidad','$precio', (SELECT ID_PROVEEDOR FROM PROVEEDORES WHERE NOMBRE = '$proveedor'));";
 if (mysqli_query($conexion, $insert_productos)) {
-    echo "<script>alert('El registro a PRODUCTOS se ha logrado con exito')</script>";
+
 } else {
     echo "<script>alert('ERROR: ¡No se ha podido insertar el registro en PRODUCTOS!')</script>";
     echo "$insert_productos" . "<br/>";
@@ -26,7 +26,7 @@ $imagen_data = file_get_contents($imagen);
 mysqli_stmt_execute($stmt);
 
 if (mysqli_affected_rows($conexion) > 0) {
-    echo "<script>alert('El registro a IMAGENES se ha logrado con éxito')</script>";
+    include("articulos.php");
 } else {
     echo "<script>alert('ERROR: ¡No se ha podido insertar el registro en IMAGENES!')</script>";
     echo mysqli_error($conexion);

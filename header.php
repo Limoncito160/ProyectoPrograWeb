@@ -32,7 +32,17 @@
     <u1 class="nav navbar-nav">
 
     </u1>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="login.php"><span class="glyphicon glyphicon-log-in""></span>Salir</a></li>
-    </ul>
+    <form method="POST" action="">
+    <input type="submit" name="logout" value="Cerrar sesión" style="margin-top:15px; margin-left:1050px;">
+</form>
+
+<?php
+if (isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+    header('Location: login.php');
+    exit();
+}
+?>
+
   </nav>
