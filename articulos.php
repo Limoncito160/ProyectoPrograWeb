@@ -47,7 +47,7 @@ include("header.php");
       // verifica si se encontraron resultados
       if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-          echo "<tr>";
+          echo "<tr> ";
           echo "<td>" . $row["NOMBRE"] . "</td>";
           echo "<td>" . $row["EXISTENCIA"] . "</td>";
           echo "<td>" . $row["PRECIO"] . "</td>";
