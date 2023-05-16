@@ -23,7 +23,7 @@ include("header.php");
 
   <table>
     <thead>
-      <tr>
+      <tr height="40"  rowspan="4">
         <th>NOMBRE DEL ARTICULO</th>
         <th>CANTIDAD EN STOCK</th>
         <th>PRECIO</th>
