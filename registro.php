@@ -19,35 +19,35 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Nombre(s): </label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="nombres">
+                    <input type="text" class="form-control" name="nombres" required>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Apellido Paterno: </label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="ap_paterno">
+                    <input type="text" class="form-control" name="ap_paterno" required>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Apellido Materno: </label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="ap_materno">
+                    <input type="text" class="form-control" name="ap_materno" required>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Fecha de Nacimiento: </label>
                 <div class="col-sm-6">
-                    <input type="date" class="form-control" name="f_nacimiento">
+                    <input type="date" class="form-control" name="f_nacimiento" required>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Telefono: </label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="telefono">
+                    <input type="text" class="form-control" name="telefono" required>
                 </div>
             </div>
 
@@ -103,35 +103,35 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Localidad: </label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="nombre_localidad">
+                    <input type="text" class="form-control" name="nombre_localidad" required>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Código Postal: </label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="cp" pattern="[0-9]+">
+                    <input type="text" class="form-control" name="cp" pattern="[0-9]+" required>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Dirección: </label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="direccion">
+                    <input type="text" class="form-control" name="direccion" required>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Correo Electronico: </label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="email">
+                    <input type="text" class="form-control" name="email" required>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Contraseña: </label>
                 <div class="col-sm-6">
-                    <input type="password" class="form-control" name="password">
+                    <input type="password" class="form-control" name="password" required>
                 </div>
             </div>
 
