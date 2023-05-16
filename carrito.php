@@ -41,10 +41,10 @@ if (!isset($_SESSION['temp_table'])) {
 
 if (isset($_POST['submit'])) {
 	$nombre = $_POST['nombre'];
-	$apellido = $_POST['apellido'];
-	$tipo = $_POST['tipo'];
+	$precio = $_POST['precio'];
+	$cantidad_solicitad = $_POST['cantidad_solicitada'];
 	// Agregar el nuevo dato al arreglo del usuario correspondiente
-	$_SESSION['temp_table'][$correo][] = array('nombre' => $nombre, 'apellido' => $apellido, 'tipo' => $tipo);
+	$_SESSION['temp_table'][$correo][] = array('nombre' => $nombre, 'precio' => $precio, 'cantidad_solicitada' => $cantidad_solicitad);
 }
 
 if (isset($_POST['limpiar'])) {
@@ -103,20 +103,20 @@ if (isset($_POST['limpiar'])) {
 			<input type="text" name="nombre" style="margin-bottom: 10px;" size="30" value="<?php echo $nombre_producto ?>" readonly><br>
 
 			<label style="display: block; margin-bottom: 10px;">Precio:</label>
-			<input type="text" name="apellido" style="margin-bottom: 10px;" size="30" value="<?php echo $precio_producto?>" readonly><br>
+			<input type="text" name="precio" style="margin-bottom: 10px;" size="30" value="<?php echo $precio_producto?>" readonly><br>
 
 			<label style="display: block; margin-bottom: 10px;">Cantidad en stock:</label>
 			<input type="text" name="stock" style="margin-bottom: 10px;" size="30" value="<?php echo $existencia_producto?>" readonly><br>
 
 			<label style="display: block; margin-bottom: 10px;">Cantidad a pedir:</label>
-			<select name="tipo" style="margin-bottom: 10px; height: 30px;">
+			<select name="cantidad_solicitada" style="margin-bottom: 10px; height: 30px;">
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
 			</select><br>
 
-			<input type="submit" name="submit" value="Agregar">
-			<input type="submit" name="limpiar" value="Limpiar">
+			<input type="submit" name="submit" value="Agregar al carrito">
+			<input type="submit" name="limpiar" value="Limpiar carrito">
 
 		</form>
 	</div>
@@ -127,9 +127,9 @@ if (isset($_POST['limpiar'])) {
 			<table>
     <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Tipo</th>
+            <th>Articulo</th>
+            <th>Precio unitario</th>
+            <th>Cantidad solicitada</th>
         </tr>
     </thead>
     <tbody>
@@ -140,10 +140,10 @@ if (isset($_POST['limpiar'])) {
                         <?php echo $row['nombre']; ?>
                     </td>
                     <td>
-                        <?php echo $row['apellido']; ?>
+                        <?php echo $row['precio']; ?>
                     </td>
                     <td>
-                        <?php echo $row['tipo']; ?>
+                        <?php echo $row['cantidad_solicitada']; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -157,13 +157,5 @@ if (isset($_POST['limpiar'])) {
 
 	</div>
 </body>
-<?php
-
-echo $nombre_producto . "<br/>";
-echo $precio_producto . "<br/>";
-echo $existencia_producto . "<br/>";
-
-
-?>
 
 </html>
