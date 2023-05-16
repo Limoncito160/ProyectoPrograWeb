@@ -149,6 +149,6 @@ INSERT INTO DIRECCIONES (ID_LOCALIDAD, DIRECCION, CP) VALUES ('300' , 'Albert Ei
 INSERT INTO ROLES (NOMBRE) VALUES ('Usuario'), ('Administrador');
 
 INSERT INTO PROVEEDORES (ID_DIRECCION, NOMBRE, TELEFONO, EMAIL) VALUES 
-    ('200', 'Plasticos Gonzalo S.A.', '5520394872', 'plagonz@gmail.com'),
+    ('200', 'Plásticos Gonzalo S.A. de C.V.', '5520394872', 'plagonz@gmail.com'),
     ('201', 'Arte de mi parte S.A. de C.V.', '4012938471', 'art@part.mx'),
     ('202', 'Manualidades y plásticos C.V.', '7295541102', 'manualidades@plasticos.com');
