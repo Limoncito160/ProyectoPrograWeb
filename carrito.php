@@ -29,8 +29,8 @@ while ($fila1 = mysqli_fetch_assoc($resultado)) {
 	// ...y así sucesivamente para cada columna de la tabla
 }
 
-while ($fila2 = mysqli_fetch_assoc($sql)){
-    $nombre_usuario = $fila2['NOMBRES'];
+while ($fila2 = mysqli_fetch_assoc($sql)) {
+	$nombre_usuario = $fila2['NOMBRES'];
 }
 
 
@@ -41,10 +41,10 @@ if (!isset($_SESSION['temp_table'])) {
 
 if (isset($_POST['submit'])) {
 	$nombre = $_POST['nombre'];
-	$apellido = $_POST['apellido'];
-	$tipo = $_POST['tipo'];
+	$precio = $_POST['precio'];
+	$cantidad_pedido = $_POST['cantidad_pedido'];
 	// Agregar el nuevo dato al arreglo del usuario correspondiente
-	$_SESSION['temp_table'][$correo][] = array('nombre' => $nombre, 'apellido' => $apellido, 'tipo' => $tipo);
+	$_SESSION['temp_table'][$correo][] = array('nombre' => $nombre, 'precio' => $precio, 'cantidad_pedido' => $cantidad_pedido);
 }
 
 if (isset($_POST['limpiar'])) {
@@ -100,20 +100,24 @@ if (isset($_POST['limpiar'])) {
 		<form method="POST" action="" style="margin: 20px;">
 
 			<label style="display: block; margin-bottom: 10px;">Nombre:</label>
-			<input type="text" name="nombre" style="margin-bottom: 10px;" size="30" value="<?php echo $nombre_producto ?>" readonly><br>
+			<input type="text" name="nombre" style="margin-bottom: 10px;" size="30"
+				value="<?php echo $nombre_producto ?>" readonly><br>
 
 			<label style="display: block; margin-bottom: 10px;">Precio:</label>
-			<input type="text" name="apellido" style="margin-bottom: 10px;" size="30" value="<?php echo $precio_producto?>" readonly><br>
+			<input type="text" name="precio" style="margin-bottom: 10px;" size="30"
+				value="<?php echo $precio_producto ?>" readonly><br>
 
 			<label style="display: block; margin-bottom: 10px;">Cantidad en stock:</label>
-			<input type="text" name="stock" style="margin-bottom: 10px;" size="30" value="<?php echo $existencia_producto?>" readonly><br>
+			<input type="text" name="stock" style="margin-bottom: 10px;" size="30"
+				value="<?php echo $existencia_producto ?>" readonly><br>
 
 			<label style="display: block; margin-bottom: 10px;">Cantidad a pedir:</label>
-			<select name="tipo" style="margin-bottom: 10px; height: 30px;">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
+			<select name="cantidad_pedido" style="margin-bottom: 10px; height: 30px;">
+				<?php for ($i = 1; $i <= $existencia_producto; $i++): ?>
+					<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+				<?php endfor; ?>
 			</select><br>
+
 
 			<input type="submit" name="submit" value="Agregar">
 			<input type="submit" name="limpiar" value="Limpiar">
@@ -124,46 +128,40 @@ if (isset($_POST['limpiar'])) {
 		<h1 style="text-align:center;"><strong>Carrito de
 				<?php echo $nombre_usuario ?>
 			</strong></h1>
-			<table>
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Tipo</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php if (isset($_SESSION['temp_table'][$correo]) && count($_SESSION['temp_table'][$correo]) > 0): ?>
-            <?php foreach ($_SESSION['temp_table'][$correo] as $row): ?>
-                <tr>
-                    <td>
-                        <?php echo $row['nombre']; ?>
-                    </td>
-                    <td>
-                        <?php echo $row['apellido']; ?>
-                    </td>
-                    <td>
-                        <?php echo $row['tipo']; ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <tr>
-                <td colspan="3">No tienes artículos en tu carrito</td>
-            </tr>
-        <?php endif; ?>
-    </tbody>
-</table>
+		<table>
+			<thead>
+				<tr>
+					<th>Articulo</th>
+					<th>Precio unitario</th>
+					<th>Cantidad</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php if (isset($_SESSION['temp_table'][$correo]) && count($_SESSION['temp_table'][$correo]) > 0): ?>
+					<?php foreach ($_SESSION['temp_table'][$correo] as $row): ?>
+						<tr>
+							<td>
+								<?php echo $row['nombre']; ?>
+							</td>
+							<td>
+								<?php echo $row['precio']; ?>
+							</td>
+							<td>
+								<?php echo $row['cantidad_pedido']; ?>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				<?php else: ?>
+					<tr>
+						<td colspan="3">No tienes artículos en tu carrito</td>
+					</tr>
+				<?php endif; ?>
+			</tbody>
+		</table>
 
 	</div>
 </body>
 <?php
-
-echo $nombre_producto . "<br/>";
-echo $precio_producto . "<br/>";
-echo $existencia_producto . "<br/>";
-
-
 ?>
 
 </html>
