@@ -150,7 +150,7 @@
                     <button type="submit" class="btn btn-primary">Agregar</button>
                 </div>
                 <div class="offset-sm-3 col-sm-3 d-grid">
-                    <a class="btn btn-outline-primary" href="procesar_registro.php" role="button">Cancelar<a>
+                    <a class="btn btn-outline-primary" href="login.php" role="button">Cancelar<a>
                 </div>
             </div>
 
