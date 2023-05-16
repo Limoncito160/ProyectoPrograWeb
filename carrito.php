@@ -128,11 +128,23 @@ if (isset($_POST['limpiar'])) {
 		<h1 style="text-align:center;"><strong>Carrito de
 				<?php echo $nombre_usuario ?>
 			</strong></h1>
+		<?php
+		$total_precio = 0; // variable para almacenar la suma total de precios
+		$total_cantidad = 0; // variable para almacenar la suma total de cantidad solicitada
+		
+		if (isset($_SESSION['temp_table'][$correo]) && count($_SESSION['temp_table'][$correo]) > 0) {
+			foreach ($_SESSION['temp_table'][$correo] as $row) {
+				$total_precio += $row['precio'] * $row['cantidad_solicitada']; // suma total de precios
+				$total_cantidad += $row['cantidad_solicitada']; // suma total de cantidad solicitada
+			}
+		}
+		?>
+
 		<table>
 			<thead>
 				<tr>
 					<th>Articulo</th>
-					<th>Precio unitario</th>
+					<th>Total</th>
 					<th>Cantidad solicitada</th>
 				</tr>
 			</thead>
@@ -144,7 +156,7 @@ if (isset($_POST['limpiar'])) {
 								<?php echo $row['nombre']; ?>
 							</td>
 							<td>
-								<?php echo $row['precio']; ?>
+								<?php echo "$" . ($row['precio'] * $row['cantidad_solicitada']) . " MXN"; ?>
 							</td>
 							<td>
 								<?php echo $row['cantidad_solicitada']; ?>
@@ -157,9 +169,60 @@ if (isset($_POST['limpiar'])) {
 					</tr>
 				<?php endif; ?>
 			</tbody>
-		</table>
+		</table><br>
+
+		<?php
+		$total_precio = 0;
+		$total_cantidad = 0;
+
+		if (isset($_SESSION['temp_table'][$correo]) && count($_SESSION['temp_table'][$correo]) > 0) {
+			foreach ($_SESSION['temp_table'][$correo] as $row) {
+				$total_precio += ($row['precio'] * $row['cantidad_solicitada']);
+				$total_cantidad += $row['cantidad_solicitada'];
+			}
+		}
+
+		echo "Total de precios: $" . $total_precio . " MXN<br>";
+		echo "Total de cantidades: " . $total_cantidad;
+		if ($total_cantidad == 0) {
+			echo " (Ningún artículo en tu carrito)";
+		}
+		?>
+
+
+		<br><br>
+
+		<div class="row mb-3">
+			<div class="offset-sm-3 col-sm-3 d-grid">
+				<form action="procesar_carrito.php" method="POST">
+					<input type="hidden" name="correo" value="<?php echo $correo; ?>">
+					<input type="hidden" name="total_precio" value="<?php echo $total_precio; ?>">
+					<input type="hidden" name="total_cantidad" value="<?php echo $total_cantidad; ?>">
+					<?php if (isset($_SESSION['temp_table'][$correo]) && count($_SESSION['temp_table'][$correo]) > 0): ?>
+						<?php foreach ($_SESSION['temp_table'][$correo] as $row): ?>
+							<input type="hidden" name="id_articulo[]" value="<?php echo $row['id_articulo']; ?>">
+							<input type="hidden" name="nombre[]" value="<?php echo $row['nombre']; ?>">
+							<input type="hidden" name="precio[]" value="<?php echo $row['precio']; ?>">
+							<input type="hidden" name="cantidad_solicitada[]"
+								value="<?php echo $row['cantidad_solicitada']; ?>">
+						<?php endforeach; ?>
+					<?php endif; ?>
+					<button type="submit" class="btn btn-primary" id="botoncito">Confirmar carrito y pagar</button>
+				</form>
+			</div>
+			<div class="offset-sm-3 col-sm-3 d-grid">
+				<a class="btn btn-outline-primary" href="articulos.php" role="button">Cancelar<a>
+			</div>
+		</div>
+
 
 	</div>
+
+	<br>
+	<a class="btn btn-outline-primary" href="articulos.php" role="button" style="font-size:15px;">Regresar a ver más
+		articulos<a>
+
+
 </body>
 
 </html>
