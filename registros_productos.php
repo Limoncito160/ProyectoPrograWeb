@@ -41,14 +41,14 @@ include("header.php");
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Nombre: </label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="nombre">
+                        <input type="text" class="form-control" name="nombre" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Cantidad: </label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="cantidad">
+                        <input type="text" class="form-control" name="cantidad" required>
                     </div>
                 </div>
 
@@ -56,14 +56,14 @@ include("header.php");
                     <label class="col-sm-3 col-form-label">Precio: </label>
                     <div class="col-sm-6">
                         <input type="number" class="form-control" name="precio" step="0.01" min="0" max="9999.99"
-                            maxlength="8">
+                            maxlength="8" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Imagen: </label>
                     <div class="col-sm-6">
-                        <input type="file" class="form-control" name="imagen">
+                        <input type="file" class="form-control" name="imagen" required>
                     </div>
                 </div>
 
