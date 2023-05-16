@@ -1,3 +1,7 @@
+<head>
+<link rel="stylesheet" href="css/busqueda.css">
+</head>
+
 <?php
 session_start();
 $correo = $_SESSION['correo'];
@@ -6,6 +10,7 @@ include("header.php");
 $articulo_busqueda = $_POST['articulo_busqueda'];
 ?>
 
+<!--
 <style>
     table {
         border-collapse: collapse;
@@ -36,6 +41,7 @@ $articulo_busqueda = $_POST['articulo_busqueda'];
         margin: 0 auto;
     }
 </style>
+-->
 
 <div class="container wider-container">
     <h1>Lista de productos que ofrece Pincheles</h1>

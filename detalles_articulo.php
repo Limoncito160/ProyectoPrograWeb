@@ -45,7 +45,8 @@ if ($imagen_file) {
 
 <head>
     <title>Título de la página</title>
-    <style>
+    <link rel="stylesheet" href="css/detalles_articulo.css">
+    <!--<style>
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -77,6 +78,7 @@ if ($imagen_file) {
             height: auto;
         }
     </style>
+    -->
 </head>
 
 <body>
