@@ -109,7 +109,7 @@ if ($imagen_file) {
             </div>
             <div class="col image-col">
                 
-            <img src="data:<?php echo $tipo_imagen; ?>;base64,<?php echo base64_encode($imagen_binario); ?>" width="200" height="200">
+            <img src="data:<?php echo $tipo_imagen; ?>;base64,<?php echo base64_encode($imagen_binario); ?>" width="300" height="300">
             </div>
         </div>
 
