@@ -15,8 +15,8 @@ if (!$conn) {
 	die("Error al conectar a la base de datos: " . mysqli_connect_error());
 }
 
-$consulta = "INSERT INTO PEDIDOS ID_USUARIO, CANTIDAD, COSTO VALUES 
-((SELECT ID_USUARIO FROM USUARIOS WHERE EMAIL = '$correo'), '$total_cantidad','$total_precio');";
+$consulta = "INSERT INTO PEDIDOS (ID_USUARIO, CANTIDAD, COSTO, F_PEDIDO) VALUES 
+((SELECT ID_USUARIO FROM USUARIOS WHERE EMAIL = '$correo'), '$total_cantidad','$total_precio', CURDATE());";
 
 
 // Ejecutar una consulta SQL para crear un nuevo pedido
@@ -26,7 +26,9 @@ if (!$resultado) {
     echo "Error de consulta: " . $error . "<br>";
     echo $consulta;
 } else {
+    echo '<script>alert("¡Pedido registrado con exito!");</script>';
+    header("Location: pedidos.php");
+    exit;
 }
-
 ?>
 
