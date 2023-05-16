@@ -32,16 +32,17 @@
     <u1 class="nav navbar-nav">
 
     </u1>
-    <form method="POST" action="">
-    <input type="submit" name="logout" value="Cerrar sesión" style="margin-top:15px; margin-left:1050px;">
+    <form method="POST" action="login.php">
+    <input type="submit" name="logout" value="Cerrar sesión" style="margin-top:15px; margin-left:1000px;">
 </form>
 
 <?php
 if (isset($_POST['logout'])) {
     session_unset();
     session_destroy();
-    header('Location: login.php');
     exit();
+    header('Location: login.php');
+    
 }
 ?>
 

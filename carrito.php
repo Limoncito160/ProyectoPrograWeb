@@ -2,24 +2,8 @@
 session_start();
 $correo = $_SESSION['correo'];
 $id_rol = $_SESSION['id_rol'];
-$nombre_producto = $_POST["nombre_producto"];
+$nombre_producto = $_GET['nombre_producto'];
 include("header.php");
-
-if (!isset($_SESSION['temp_table'])) {
-	$_SESSION['temp_table'] = array();
-}
-
-if (isset($_POST['submit'])) {
-	$nombre = $_POST['nombre'];
-	$apellido = $_POST['apellido'];
-	$tipo = $_POST['tipo'];
-	$data = array('nombre' => $nombre, 'apellido' => $apellido, 'tipo' => $tipo);
-	array_push($_SESSION['temp_table'], $data);
-}
-
-if (isset($_POST['limpiar'])) {
-	$_SESSION['temp_table'] = array();
-}
 
 // Establecer la conexión con la base de datos
 $conn = mysqli_connect("localhost", "root", "", "estuches_pinceles");
@@ -29,23 +13,43 @@ if (!$conn) {
 	die("Error al conectar a la base de datos: " . mysqli_connect_error());
 }
 
-// Ejecutar una consulta SQL para obtener datos del usuario
-$resultado = mysqli_query($conn, "SELECT ID_USUARIO, NOMBRES FROM USUARIOS WHERE EMAIL = '$correo'");
+// Ejecutar una consulta SQL para obtener datos del producto
+$resultado = mysqli_query($conn, "SELECT NOMBRE, PRECIO, EXISTENCIA
+									FROM PRODUCTOS
+									WHERE NOMBRE = '$nombre_producto'");
+
+$sql = mysqli_query($conn, "SELECT NOMBRES FROM USUARIOS WHERE EMAIL = '$correo'");
 
 // Procesar los datos del resultado
-while ($fila = mysqli_fetch_assoc($resultado)) {
+while ($fila1 = mysqli_fetch_assoc($resultado)) {
 	// Guardar los datos en variables
-	$id_usuario = $fila["ID_USUARIO"];
-	$nombre_usuario = $fila["NOMBRES"];
+	$nombre_producto = $fila1["NOMBRE"];
+	$precio_producto = $fila1["PRECIO"];
+	$existencia_producto = $fila1["EXISTENCIA"];
+	// ...y así sucesivamente para cada columna de la tabla
 }
 
-$sql1 = mysqli_query($conn, "SELECT NOMBRE, EXISTENCIA, PRECIO FROM PRODUCTOS WHERE NOMBRE = '$nombre_producto';");
+while ($fila2 = mysqli_fetch_assoc($sql)){
+    $nombre_usuario = $fila2['NOMBRES'];
+}
 
-// Procesar los datos del resultado
-while ($fila1 = mysqli_fetch_assoc($sql1)) {
-	//Guardar los datos en variables
-	$stock = $fila1['EXISTENCIA'];
-	$precio = $fila1['PRECIO'];
+
+//Código para llenar la tabla temporal de carrito
+if (!isset($_SESSION['temp_table'])) {
+	$_SESSION['temp_table'] = array();
+}
+
+if (isset($_POST['submit'])) {
+	$nombre = $_POST['nombre'];
+	$apellido = $_POST['apellido'];
+	$tipo = $_POST['tipo'];
+	// Agregar el nuevo dato al arreglo del usuario correspondiente
+	$_SESSION['temp_table'][$correo][] = array('nombre' => $nombre, 'apellido' => $apellido, 'tipo' => $tipo);
+}
+
+if (isset($_POST['limpiar'])) {
+	// Limpiar sólo la tabla temporal del usuario correspondiente
+	unset($_SESSION['temp_table'][$correo]);
 }
 
 ?>
@@ -54,17 +58,17 @@ while ($fila1 = mysqli_fetch_assoc($sql1)) {
 <html>
 
 <head>
-	<title>Carrito de compras</title>
+	<title>Formulario para agregar a tabla temporal</title>
 	<style>
 		body {
-			margin: 0;
-			padding: 0;
-			font-family: Arial, sans-serif;
+			background-color: #E0FFFF;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
 		}
 
-		.container {
-			background-color: #34749E;
-			color: #fff;
+		.column {
+			flex-basis: 50%;
 			padding: 20px;
 		}
 
@@ -75,105 +79,91 @@ while ($fila1 = mysqli_fetch_assoc($sql1)) {
 
 		th,
 		td {
-			padding: 8px;
 			text-align: left;
-			border-bottom: 1px solid #ddd;
+			padding: 8px;
+			border: 1px solid #ddd;
 		}
 
 		th {
-			background-color: black;
-			color: #fff;
+			background-color: #f2f2f2;
 		}
 
-		form {
-			margin-bottom: 20px;
-		}
-
-		input[type="text"],
-		select {
-			padding: 8px;
-			border-radius: 5px;
-			border: none;
-			margin-bottom: 10px;
-			color: black;
-		}
-
-		input[type="submit1"] {
-			background-color: black;
-			color: #fff;
-			padding: 10px;
-			border: none;
-			border-radius: 5px;
-			cursor: pointer;
-		}
-
-		input[type="submit1"]:hover {
-			background-color: #003459;
-		}
-
-		h1,
-		h2 {
-			margin-top: 0;
+		tr:nth-child(even) {
+			background-color: #f2f2f2;
 		}
 	</style>
 </head>
 
 <body>
-	<div class="container">
-		<h1 style="text-align:center;">Carrito de compras de
-			<?php echo $nombre_usuario ?>
-		</h1>
-		<form method="POST" action="">
-			<h3><strong>Nombre del articulo: </strong>
-				<?php echo $nombre_producto ?>
-			</h3>
-			<h3><strong>Cantidad en stock: </strong>
-				<?php echo $stock ?>
-			</h3>
-			<h3><strong>Precio: </strong>$
-				<?php echo $precio ?> MXN
-			</h3>
-			<label>Cantidad a pedir:</label><br>
-			<select name="cantidad">
-				<?php
-				for ($i = 1; $i <= $stock; $i++) {
-					echo '<option value="' . $i . '">' . $i . '</option>';
-				}
-				?>
+	<div class="column" style="background-color: #ADD8E6">
+		<h1 style="text-align:center;"><strong>Revisar datos del articulo</strong></h1>
+		<form method="POST" action="" style="margin: 20px;">
+
+			<label style="display: block; margin-bottom: 10px;">Nombre:</label>
+			<input type="text" name="nombre" style="margin-bottom: 10px;" size="30" value="<?php echo $nombre_producto ?>" readonly><br>
+
+			<label style="display: block; margin-bottom: 10px;">Precio:</label>
+			<input type="text" name="apellido" style="margin-bottom: 10px;" size="30" value="<?php echo $precio_producto?>" readonly><br>
+
+			<label style="display: block; margin-bottom: 10px;">Cantidad en stock:</label>
+			<input type="text" name="stock" style="margin-bottom: 10px;" size="30" value="<?php echo $existencia_producto?>" readonly><br>
+
+			<label style="display: block; margin-bottom: 10px;">Cantidad a pedir:</label>
+			<select name="tipo" style="margin-bottom: 10px; height: 30px;">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
 			</select><br>
 
-			<input type="submit1" name="submit" value="Agregar">
-			<input type="submit1" name="limpiar" value="Limpiar">
+			<input type="submit" name="submit" value="Agregar">
+			<input type="submit" name="limpiar" value="Limpiar">
+
 		</form>
-		<h2>Tabla temporal</h2>
-		<table>
-			<thead>
-				<tr>
-					<th>Nombre</th>
-					<th>Apellido</th>
-					<th>Tipo</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php foreach ($_SESSION['temp_table'] as $row): ?>
-					<tr>
-						<td>
-							<?php echo $row['nombre']; ?>
-						</td>
-						<td>
-							<?php echo $row['apellido']; ?>
-						</td>
-						<td>
-							<?php echo $row['tipo']; ?>
-						</td>
-					</tr>
-				<?php endforeach; ?>
-			</tbody>
-
-		</table>
-		
 	</div>
+	<div class="column" style="background-color: #ADD8E6">
+		<h1 style="text-align:center;"><strong>Carrito de
+				<?php echo $nombre_usuario ?>
+			</strong></h1>
+			<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Tipo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (isset($_SESSION['temp_table'][$correo]) && count($_SESSION['temp_table'][$correo]) > 0): ?>
+            <?php foreach ($_SESSION['temp_table'][$correo] as $row): ?>
+                <tr>
+                    <td>
+                        <?php echo $row['nombre']; ?>
+                    </td>
+                    <td>
+                        <?php echo $row['apellido']; ?>
+                    </td>
+                    <td>
+                        <?php echo $row['tipo']; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="3">No tienes artículos en tu carrito</td>
+            </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
 
+	</div>
 </body>
+<?php
+
+echo $nombre_producto . "<br/>";
+echo $precio_producto . "<br/>";
+echo $existencia_producto . "<br/>";
+
+
+?>
 
 </html>

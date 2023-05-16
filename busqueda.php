@@ -55,7 +55,7 @@ $articulo_busqueda = $_POST['articulo_busqueda'];
                 <th>NOMBRE DEL ARTICULO</th>
                 <th>CANTIDAD EN STOCK</th>
                 <th>PRECIO</th>
-                <th>BOTON</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>

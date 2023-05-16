@@ -113,7 +113,7 @@ if ($imagen_file) {
 
         <br> </br>
 
-        <form action="carrito.php" method="POST">
+        <form action="carrito.php" >
         <input type="hidden" name="nombre_producto" value="<?php echo $nombre_producto; ?>">
             <div class="row mb-3">
                 <div class="offset-sm-3 col-sm-3 d-flex">
