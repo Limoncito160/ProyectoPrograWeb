@@ -33,7 +33,7 @@
 
     </u1>
     <form method="POST" action="login.php">
-    <input type="submit" name="logout" value="Cerrar sesión" style="margin-top:15px; margin-left:1000px;">
+    <input type="submit" name="logout" value="Cerrar sesión" style="margin-top:15px; margin-left:690px;">
 </form>
 
 <?php
