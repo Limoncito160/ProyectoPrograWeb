@@ -19,14 +19,17 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="home.php"><span class="glyphicon glyphicon-home"></span> Pagina Principal</a></li>
       <li><a href="articulos.php">Articulos</a></li>
+      <li><a href="pedidos.php">Pedidos</a></li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           <span class="glyphicon glyphicon-earphone"> Contacto
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <p>Telefono: </p><a class="dropdown-item" href="#">999 555 4321</a>
-          <p>Correo: </p><a class="dropdown-item" href="#">artempresa@outlook.com</a>
+          <p>Telefono: </p><a class="dropdown-item" href="#">722 554 5526</a>
+          <p>Correo: </p><a class="dropdown-item" href="#">srobledon@toluca.tecnm.mx</a>
+          <p>Liga a Github: </p><a class="dropdown-item" href="https://github.com/Limoncito160/ProyectoPrograWeb">Limoncito160/ProyectoPrograWeb</a>
+
       </li>
     </ul>
     <u1 class="nav navbar-nav">

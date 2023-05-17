@@ -194,7 +194,7 @@ if (isset($_POST['limpiar'])) {
 
 		<div class="row mb-3">
 			<div class="offset-sm-3 col-sm-3 d-grid">
-				<form action="procesar_carrito.php" method="POST">
+				<form action="procesar_pedido.php" method="POST">
 					<input type="hidden" name="correo" value="<?php echo $correo; ?>">
 					<input type="hidden" name="total_precio" value="<?php echo $total_precio; ?>">
 					<input type="hidden" name="total_cantidad" value="<?php echo $total_cantidad; ?>">
@@ -222,6 +222,19 @@ if (isset($_POST['limpiar'])) {
 	<a class="btn btn-outline-primary" href="articulos.php" role="button" style="font-size:15px;">Regresar a ver más
 		articulos<a>
 
+			<script>
+				document.getElementById("botoncito").addEventListener("click", function (event) {
+					var totalCantidad = <?php echo $total_cantidad; ?>;
+					var stock = <?php echo $existencia_producto; ?>;
+					if (totalCantidad === 0) {
+						event.preventDefault(); // Previene el envío del formulario
+						alert("No se puede comprar un carrito vacío.");
+					} else if (totalCantidad > stock) {
+						event.preventDefault(); // Previene el envío del formulario
+						alert("Tus cantidades exceden el stock disponible");
+					}
+				});
+			</script>
 
 </body>
 
