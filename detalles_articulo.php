@@ -43,90 +43,81 @@ if ($imagen_file) {
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>Título de la página</title>
-    <link rel="stylesheet" href="css/detalles_articulo.css">
-    <!--<style>
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+<div class="container background-container"
+    style="margin-start:10px; margin-bottom:20px; border-radius:20px; height:500px; width:auto;">
 
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-        }
+    <head>
+        <title>Título de la página</title>
+        <link rel="stylesheet" href="css/detalles_articulo.css">
+    </head>
 
-        .col {
-            flex: 1;
-            margin: 10px;
-            padding: 20px;
-            background-color: #f2f2f2;
-        }
-
-        .image-col {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: white;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
-    -->
-</head>
-
-<body>
-    <div class="container">
-        <div style="text-align: center;">
-            <h1>DETALLES DEL PRODUCTO SELECCIONADO</h1>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div style="text-align: center;">
-                    <h2>
-                        <?php echo $nombre_producto ?>
-                    </h2>
-                </div>
-
-                <p><strong>ID:</strong>
-                    <?php echo $id_producto ?>
-                </p>
-                <p><strong>Precio:</strong>
-                    <?php echo $precio_producto ?>
-                </p>
-                <p><strong>Cantidad en stock:</strong>
-                    <?php echo $existencia_producto ?>
-                </p>
-                <p><strong>Proveedor:</strong>
-                    <?php echo $nombre_proveedor ?>
-                </p>
+    <body>
+        <div class="container">
+            <div style="text-align: center;">
+                <br><h1 style="color:white;"><strong>DETALLES DEL PRODUCTO SELECCIONADO</strong></h1><br>
             </div>
-            <div class="col image-col">
-                
-            <img src="data:<?php echo $tipo_imagen; ?>;base64,<?php echo base64_encode($imagen_binario); ?>" width="300" height="300">
+            <div class="row">
+                <div class="col" style="border-radius:15px; background:white; width: 400px; height:250px;">
+                    <div style="text-align: center; margin-left:20px;">
+                        <h2>
+                            <?php echo $nombre_producto ?>
+                        </h2>
+                    </div>
+
+                    <p style="margin-left:20px;"><strong>ID:</strong>
+                        <?php echo $id_producto ?>
+                    </p>
+                    <p style="margin-left:20px;"><strong>Precio:</strong>
+                        <?php echo $precio_producto ?>
+                    </p>
+                    <p style="margin-left:20px;"><strong>Cantidad en stock:</strong>
+                        <?php echo $existencia_producto ?>
+                    </p>
+                    <p style="margin-left:20px;"><strong>Proveedor:</strong>
+                        <?php echo $nombre_proveedor ?>
+                    </p>
+                </div>
+                <div class="col image-col" style="border-radius:15px; background:white; width: 500px; text-align:center; margin-left:20px;">
+
+                    <img src="data:<?php echo $tipo_imagen; ?>;base64,<?php echo base64_encode($imagen_binario); ?>"
+                        width="250">
+                </div>
             </div>
         </div>
 
         <br> </br>
 
-        <form action="carrito.php" >
-        <input type="hidden" name="nombre_producto" value="<?php echo $nombre_producto; ?>">
+        <form action="carrito.php">
+            <input type="hidden" name="nombre_producto" value="<?php echo $nombre_producto; ?>">
             <div class="row mb-3">
                 <div class="offset-sm-3 col-sm-3 d-flex">
-                    <button type="submit" class="btn btn-primary">Añadir al carrito</button>
+                    <button type="submit" class="btn btn-primary">AÑADIR AL CARRITO</button>
                 </div>
                 <div class="offset-sm-3 col-sm-3 d-flex">
                     <a class="btn btn-outline-primary" href="articulos.php" role="button">Regresar</a>
                 </div>
             </div>
         </form>
-    </div>
-</body>
+    </body>
+</div>
 
 </html>
+
+<footer class="text-center text-white" style="background-color: black; color:white; font-weight: lighter;">
+    <div>Conoce mas en:
+        <a href="#">GitHub</a>
+    </div>
+
+    <div class="text-center text-white p-3" style="background-color: black;">
+        © Mayo 2023 Copyright: Pincheles de S.A. de C.V.
+    </div>
+
+</footer>
+
+<style>
+    .background-container {
+        background-image: url('img/background.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>

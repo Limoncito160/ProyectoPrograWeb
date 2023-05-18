@@ -38,30 +38,28 @@ if (isset($_SESSION['correo']) && isset($_SESSION['id_rol'])) {
 }
 ?>
 
-<div class="container wider-container">
-  <h1>Lista de productos que ofrece Pincheles</h1>
+<div class="container background-container" style="margin-start:10px; margin-bottom:20px; border-radius:20px; height:100%">
+  <h1 style="text-align:center; color:white;"><strong>CATÁLOGO</strong></h1>
 
   <?php
-  echo $user_role;
   // Verifica si la sesión pertenece a un administrador
   if ($user_role == 'admin') {
     ?>
-    <button><a href="registros_productos.php">Registrar un nuevo producto</a></button><br></br>
+    <button><a href="registros_productos.php" style="color:black;">REGISTRAR NUEVO PRODUCTO</a></button><br></br>
     <?php
-    echo "Administrador";
   }
   ?>
 
-  <table>
+  <table style="height:450px;">
     <thead>
       <tr height="40" rowspan="4">
-        <th>NOMBRE DEL ARTICULO</th>
-        <th>CANTIDAD EN STOCK</th>
-        <th>PRECIO</th>
+        <th style = "text-align:center;">NOMBRE DEL ARTICULO</th>
+        <th style = "text-align:center;">CANTIDAD EN STOCK</th>
+        <th style = "text-align:center;">PRECIO</th>
         <th></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody  style = "text-align:center; color:white">
       <?php
       // Conexión a la base de datos
       $conexion = mysqli_connect("localhost", "root", "", "estuches_pinceles");
@@ -93,10 +91,29 @@ if (isset($_SESSION['correo']) && isset($_SESSION['id_rol'])) {
     </tbody>
   </table>
 
-  <form class="form-inline" action="busqueda.php" method="POST">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" maxlength="100"
+  <form class="form-inline" action="busqueda.php" method="POST"  style = "margin-left:850px;">
+    <input class="form-control mr-sm-2" type="search" placeholder="Buscar productos" aria-label="Search" maxlength="100"
       style="margin-top:10px;" name="articulo_busqueda">
     <button class="btn btn-outline-success" type="submit" style="margin-top:10px;">Buscar</button>
   </form>
 
 </div>
+
+<footer class="text-center text-white" style="background-color: black; color:white; font-weight: lighter;">
+  <div>Conoce mas en:
+    <a href="#">GitHub</a>
+  </div>
+
+  <div class="text-center text-white p-3" style="background-color: black;">
+    © Mayo 2023 Copyright: Pincheles de S.A. de C.V.
+  </div>
+
+</footer>
+
+<style>
+  .background-container {
+    background-image: url('img/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+</style>
