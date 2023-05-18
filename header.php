@@ -59,7 +59,7 @@ if (isset($_SESSION['correo']) && isset($_SESSION['id_rol'])) {
         <a id="contact-button" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
 
-          <span class="glyphicon glyphicon-earphone" style="color: white;"> Contacto
+          <span style="color: white; font-family:Montserrat"> Contacto
         </a>
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
