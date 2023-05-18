@@ -32,9 +32,15 @@
 
       </li>
     </ul>
-    <u1 class="nav navbar-nav" style="margin-left: 615px;">
-    <li><a href="login.php" style="color: white;">Cerrar Sesión</a></li>
-    </u1>
+    <ul class="nav navbar-nav ml-auto">
+<!-- Enlace para cerrar sesión -->
+<li><a href="login.php" style="color: white;" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a></li>
+
+<!-- Formulario oculto para realizar el logout -->
+<form id="logout-form" action="login.php" method="post" style="display: none;">
+    <input type="hidden" name="logout" value="1">
+</form>
+    </ul>
     
 <?php
 if (isset($_POST['logout'])) {
