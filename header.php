@@ -66,7 +66,7 @@ if (isset($_SESSION['correo']) && isset($_SESSION['id_rol'])) {
           Principal</a></li>
 
       <li><a id="articles-button" href="articulos.php" style="color: white;">Articulos</a></li>
-      <li><a id="request-button" href="pedidos.php" style="color: white;">Pedidos</a></li>
+
 
       <li class="nav-item dropdown" style="color:black;">
         <a id="contact-button" class="nav-link dropdown-toggle contact-link" href="#" id="navbarDropdown" role="button"
@@ -93,11 +93,13 @@ if (isset($_SESSION['correo']) && isset($_SESSION['id_rol'])) {
       <?php } else if ($user_role == 'user') { ?>
 
           <!--BOTONES DEL USUARIO-->
+          <li><a id="request-button" href="pedidos.php" style="color: white;">Pedidos</a></li>
           <li><a href="" style="color: white;"
               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a></li>
       <?php } else { ?>
 
           <!--BOTONES DEL ADMINISTRADOR -->
+          <li><a id="request-button" href="pedidos.php" style="color: white;">Pedidos</a></li>
           <li><a href="http://localhost/phpmyadmin/index.php" style="color: white;"
               onclick="event.preventDefault(); document.getElementById('manage-form').submit();">Gestionar</a></li>
           <li><a href="" style="color: white;"

@@ -1,9 +1,35 @@
 <?php
 session_start();
-$correo = $_SESSION['correo'];
-$id_rol = $_SESSION['id_rol'];
 include("header.php");
 $nombre = urldecode($_GET["nombre"]);
+
+if (isset($_SESSION['correo']) && isset($_SESSION['id_rol'])) {
+
+    // Existe una sesión activa, puedes acceder a los datos de la sesión
+    $correo = $_SESSION['correo'];
+    $id_rol = $_SESSION['id_rol'];
+
+    // Resto del código para usuarios autenticados...
+    // Verifica que tipo de usuario es
+
+    if ($id_rol == '601') {
+
+        //Código para el administrador
+        $user_role = 'admin';
+
+    } else if ($id_rol == '600') {
+
+        //Código para el usuario mortal
+        $user_role = 'user';
+
+    }
+
+} else {
+
+    // Código para el usuario invitado
+    $user_role = 'guest';
+
+}
 
 // Establecer la conexión con la base de datos
 $conn = mysqli_connect("localhost", "root", "", "estuches_pinceles");
@@ -54,7 +80,8 @@ if ($imagen_file) {
     <body>
         <div class="container">
             <div style="text-align: center;">
-                <br><h1 style="color:white;"><strong>DETALLES DEL PRODUCTO SELECCIONADO</strong></h1><br>
+                <br>
+                <h1 style="color:white;"><strong>DETALLES DEL PRODUCTO SELECCIONADO</strong></h1><br>
             </div>
             <div class="row">
                 <div class="col" style="border-radius:15px; background:white; width: 400px; height:250px;">
@@ -77,7 +104,8 @@ if ($imagen_file) {
                         <?php echo $nombre_proveedor ?>
                     </p>
                 </div>
-                <div class="col image-col" style="border-radius:15px; background:white; width: 500px; text-align:center; margin-left:20px;">
+                <div class="col image-col"
+                    style="border-radius:15px; background:white; width: 500px; text-align:center; margin-left:20px;">
 
                     <img src="data:<?php echo $tipo_imagen; ?>;base64,<?php echo base64_encode($imagen_binario); ?>"
                         width="250">
@@ -87,17 +115,34 @@ if ($imagen_file) {
 
         <br> </br>
 
-        <form action="carrito.php">
-            <input type="hidden" name="nombre_producto" value="<?php echo $nombre_producto; ?>">
-            <div class="row mb-3">
-                <div class="offset-sm-3 col-sm-3 d-flex">
-                    <button type="submit" class="btn btn-primary">AÑADIR AL CARRITO</button>
+        <?php if ($user_role == 'admin' || $user_role == 'user') { ?>
+
+            <form action="carrito.php">
+                <input type="hidden" name="nombre_producto" value="<?php echo $nombre_producto; ?>">
+                <div class="row mb-3">
+                    <div class="offset-sm-3 col-sm-3 d-flex">
+                        <button type="submit" class="btn btn-primary">AÑADIR AL CARRITO</button>
+                    </div>
+                    <div class="offset-sm-3 col-sm-3 d-flex">
+                        <a style="font-size:25px; class="btn btn-outline-primary" href="articulos.php" role="button">Regresar</a>
+                    </div>
                 </div>
-                <div class="offset-sm-3 col-sm-3 d-flex">
-                    <a class="btn btn-outline-primary" href="articulos.php" role="button">Regresar</a>
+            </form>
+
+        <?php } else { ?>
+
+            <form action="carrito.php">
+                <input type="hidden" name="nombre_producto" value="<?php echo $nombre_producto; ?>">
+                <div class="row mb-3">
+                    <div class="offset-sm-3 col-sm-3 d-flex">
+                        <a style="font-size:25px;" class="btn btn-outline-primary" href="articulos.php" role="button">Regresar</a>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+            
+        <?php } ?>
+
+
     </body>
 </div>
 
