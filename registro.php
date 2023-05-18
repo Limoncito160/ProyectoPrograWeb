@@ -140,7 +140,7 @@
                 <div class="col-sm-6">
                     <select class="form-control" name="tipo_usuario">
                         <option value="Usuario">Usuario</option>
-                        <option value="Administrador">Administrador</option>
+                       <!-- <option value="Administrador">Administrador</option> -->
                     </select>
                 </div>
             </div>
