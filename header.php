@@ -40,24 +40,23 @@ if (isset($_SESSION['correo']) && isset($_SESSION['id_rol'])) {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <!--Variables-->
-
 </head>
 
-<body>
+<body style="font-family:Montserrat">
   <!--Barra de navegación-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:black; display:flex;">
 
     <p class="navbar-brand disable" style="color: white;">Pincheles S.A. de C.V.</p>
 
     <ul class="nav navbar-nav">
-      <li class="active"><a href="home.php" style="color: white;"><span class="glyphicon glyphicon-home"></span> Pagina
+      <li class="active"><a id="home-button" href="home.php" style="color: white;"><span class="glyphicon glyphicon-home"></span> Pagina
           Principal</a></li>
 
-      <li><a href="articulos.php" style="color: white;">Articulos</a></li>
-      <li><a href="pedidos.php" style="color: white;">Pedidos</a></li>
+      <li><a id="articles-button" href="articulos.php" style="color: white;">Articulos</a></li>
+      <li><a id="request-button"href="pedidos.php" style="color: white;">Pedidos</a></li>
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        <a id="contact-button" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
 
           <span class="glyphicon glyphicon-earphone" style="color: white;"> Contacto
