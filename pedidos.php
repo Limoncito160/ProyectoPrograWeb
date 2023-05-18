@@ -34,7 +34,8 @@ if (!$conn) {
     width: 100%;
   }
 
-  th, td {
+  th,
+  td {
     padding: 8px;
     text-align: center;
     border-bottom: 1px solid #ddd;
@@ -45,86 +46,107 @@ if (!$conn) {
     text-align: center;
   }
 
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
+  .background-container {
+    background-image: url('img/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  td {
+    color:white;
   }
 </style>
 
 
-<div class="container" style="background-color: #34749E;">
-  <h1 style="text-align:center; color:white;"><strong>Pedidos de <?php echo $nombre_usuario?> </strong></h1>
-</div>
+<div class="container background-container"
+  style="margin-start:10px; margin-bottom:20px; border-radius:20px; height:600px;">
+  <div class="container" style="">
+    <h1 style="text-align:center; color:white;"><strong>PEDIDOS DE 
+        <?php echo $nombre_usuario ?>
+      </strong></h1>
+  </div>
 
-<br>
-<div class="container" style="background-color: #34749E;">
+  <br>
+  <div class="container" style="background-color: #34749E;">
 
-</div>
+  </div>
 
-<?php
+  <?php
 
-$consulta = "SELECT ID_USUARIO FROM USUARIOS WHERE EMAIL = '$correo';";
+  $consulta = "SELECT ID_USUARIO FROM USUARIOS WHERE EMAIL = '$correo';";
 
-// Ejecutar una consulta SQL para obtener el id_usuario
-$resultado = mysqli_query($conn, $consulta);
-if (!$resultado) {
-  $error = mysqli_error($conn);
-  echo "Error de consulta: " . $error . "<br>";
-  echo $consulta;
-} else {
-  // Obtener el valor de la consulta en una variable
-  $fila = mysqli_fetch_assoc($resultado);
-  $idUsuario = $fila['ID_USUARIO'];
+  // Ejecutar una consulta SQL para obtener el id_usuario
+  $resultado = mysqli_query($conn, $consulta);
+  if (!$resultado) {
+    $error = mysqli_error($conn);
+    echo "Error de consulta: " . $error . "<br>";
+    echo $consulta;
+  } else {
+    // Obtener el valor de la consulta en una variable
+    $fila = mysqli_fetch_assoc($resultado);
+    $idUsuario = $fila['ID_USUARIO'];
 
-}
-
-$consulta1 = "SELECT * FROM PEDIDOS WHERE ID_USUARIO = '$idUsuario'";
-//Ejecutar una consulta SQL para mostrar los pedidos del usuario
-$resultado1 = mysqli_query($conn, $consulta1);
-if(!$resultado1) {
-  $error1 = mysqli_error($conn);
-  echo "Error de consulta: " . $error1 . "<br>";
-  echo $consulta1;
-} else {
-  // Variables para almacenar los datos de la consulta
-  $pedidos = array(); // Array para almacenar múltiples pedidos
-
-  // Obtener los datos de la consulta y guardarlos en variables
-  while ($row = mysqli_fetch_assoc($resultado1)) {
-    $idPedido = $row['ID_PEDIDO'];
-    $cantidad = $row['CANTIDAD'];
-    $costo = $row['COSTO'];
-    $f_pedido = $row['F_PEDIDO'];
-    // Puedes asignar más columnas a variables aquí según tus necesidades
-
-    // Guardar los datos en un array de pedidos
-    $pedido = array(
-      'idPedido' => $idPedido,
-      'cantidad' => $cantidad,
-      'costo' => $costo,
-      'f_pedido' => $f_pedido
-      // Agrega más columnas si es necesario
-    );
-
-    // Agregar el pedido al array de pedidos
-    $pedidos[] = $pedido;
   }
 
-  // Mostrar los pedidos en una tabla
-  echo '<table>';
-  echo '<thead>';
-  echo '<tr><th>ID del Pedido</th><th>Cantidad pedida</th><th>Coste total</th><th>Fecha en la que se hizo</th></tr>';
-  echo '</thead>';
-  echo '<tbody>';
-  foreach ($pedidos as $pedido) {
-    echo '<tr>';
-    echo '<td>' . $pedido['idPedido'] . '</td>';
-    echo '<td>' . $pedido['cantidad'] . '</td>';
-    echo '<td>' . $pedido['costo'] . '</td>';
-    echo '<td>' . $pedido['f_pedido'] . '</td>';
-    echo '</tr>';
-  }
-  echo '</tbody>';
-  echo '</table>';
-}
-?>
+  $consulta1 = "SELECT * FROM PEDIDOS WHERE ID_USUARIO = '$idUsuario'";
+  //Ejecutar una consulta SQL para mostrar los pedidos del usuario
+  $resultado1 = mysqli_query($conn, $consulta1);
+  if (!$resultado1) {
+    $error1 = mysqli_error($conn);
+    echo "Error de consulta: " . $error1 . "<br>";
+    echo $consulta1;
+  } else {
+    // Variables para almacenar los datos de la consulta
+    $pedidos = array(); // Array para almacenar múltiples pedidos
+  
+    // Obtener los datos de la consulta y guardarlos en variables
+    while ($row = mysqli_fetch_assoc($resultado1)) {
+      $idPedido = $row['ID_PEDIDO'];
+      $cantidad = $row['CANTIDAD'];
+      $costo = $row['COSTO'];
+      $f_pedido = $row['F_PEDIDO'];
+      // Puedes asignar más columnas a variables aquí según tus necesidades
+  
+      // Guardar los datos en un array de pedidos
+      $pedido = array(
+        'idPedido' => $idPedido,
+        'cantidad' => $cantidad,
+        'costo' => $costo,
+        'f_pedido' => $f_pedido
+        // Agrega más columnas si es necesario
+      );
 
+      // Agregar el pedido al array de pedidos
+      $pedidos[] = $pedido;
+    }
+
+    // Mostrar los pedidos en una tabla
+    echo '<table>';
+    echo '<thead>';
+    echo '<tr><th>ID PEDIDO</th><th>CANTIDAD DE ARTÍCULOS</th><th>COSTO TOTAL</th><th>FECHA DEL PEDIDO</th></tr>';
+    echo '</thead>';
+    echo '<tbody>';
+    foreach ($pedidos as $pedido) {
+      echo '<tr>';
+      echo '<td>' . $pedido['idPedido'] . '</td>';
+      echo '<td>' . $pedido['cantidad'] . '</td>';
+      echo '<td>' . $pedido['costo'] . '</td>';
+      echo '<td>' . $pedido['f_pedido'] . '</td>';
+      echo '</tr>';
+    }
+    echo '</tbody>';
+    echo '</table>';
+  }
+  ?>
+  </div>
+
+  <footer class="text-center text-white" style="background-color: black; color:white; font-weight: lighter;">
+  <div>Conoce mas en:
+    <a href="https://github.com/Limoncito160/ProyectoPrograWeb">GitHub</a>
+  </div>
+
+  <div class="text-center text-white p-3" style="background-color: black;">
+    © Mayo 2023 Copyright: Pincheles de S.A. de C.V.
+  </div>
+
+</footer>

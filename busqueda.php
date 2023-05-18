@@ -11,7 +11,7 @@ $articulo_busqueda = $_POST['articulo_busqueda'];
 ?>
 
 <div class="container background-container" style="margin-start:10px; margin-bottom:20px; border-radius:20px; height:100%">
-    <h1 style="text-align:center; color:white;"><strong>CATÁLOGO</strong></h1>
+    <h1 style="text-align:center; color:white;"><strong>CATÁLOGO DE ARTÍCULOS</strong></h1>
 
     <?php
     // Verifica si la sesión pertenece a un administrador
@@ -75,7 +75,7 @@ $articulo_busqueda = $_POST['articulo_busqueda'];
 
 <footer class="text-center text-white" style="background-color: black; color:white; font-weight: lighter;">
   <div>Conoce mas en:
-    <a href="#">GitHub</a>
+    <a href="https://github.com/Limoncito160/ProyectoPrograWeb">GitHub</a>
   </div>
 
   <div class="text-center text-white p-3" style="background-color: black;">

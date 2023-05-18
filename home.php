@@ -1,5 +1,36 @@
 <?php
-include("header.php");
+session_start();
+
+if (isset($_SESSION['correo']) && isset($_SESSION['id_rol'])) {
+
+  // Existe una sesión activa, puedes acceder a los datos de la sesión
+  $correo = $_SESSION['correo'];
+  $id_rol = $_SESSION['id_rol'];
+
+  // Resto del código para usuarios autenticados...
+  // Verifica que tipo de usuario es
+
+  if ($id_rol == '601') {
+
+    //Código para el administrador
+    $user_role = 'admin';
+    include("header.php");
+
+  } else if ($id_rol == '600') {
+
+    //Código para el usuario mortal
+    $user_role = 'user';
+    include("header.php");
+
+  }
+
+} else {
+
+  // Código para el usuario invitado
+  $user_role = 'guest';
+  include("header.php");
+
+}
 ?>
 
 
@@ -59,7 +90,7 @@ include("header.php");
 
 <footer class="text-center text-white" style="background-color: black; color:white; font-weight: lighter;">
   <div>Conoce mas en:
-    <a href="#">GitHub</a>
+    <a href="https://github.com/Limoncito160/ProyectoPrograWeb">GitHub</a>
   </div>
 
   <div class="text-center text-white p-3" style="background-color: black;">

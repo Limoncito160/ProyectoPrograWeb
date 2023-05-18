@@ -167,7 +167,7 @@ include("header.php");
 
 <footer class="text-center text-white" style="background-color: black; color:white; font-weight: lighter;">
   <div>Conoce mas en:
-    <a href="#">GitHub</a>
+    <a href="https://github.com/Limoncito160/ProyectoPrograWeb">GitHub</a>
   </div>
 
   <div class="text-center text-white p-3" style="background-color: black;">

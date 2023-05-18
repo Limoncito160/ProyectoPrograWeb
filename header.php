@@ -50,7 +50,6 @@ if (isset($_SESSION['correo']) && isset($_SESSION['id_rol'])) {
     .navbar-nav li a:hover {
       color: black !important;
     }
-
   </style>
 
 </head>
@@ -59,7 +58,7 @@ if (isset($_SESSION['correo']) && isset($_SESSION['id_rol'])) {
   <!--Barra de navegación-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:black; display:flex;">
 
-  <p class="navbar-brand disable" style="color: white;">Pincheles S.A. de C.V.</p>
+    <p class="navbar-brand disable" style="color: white;">Pincheles S.A. de C.V.</p>
 
     <ul class="nav navbar-nav">
       <li class="active"><a id="home-button" href="home.php" style="color: white;"><span
@@ -69,7 +68,7 @@ if (isset($_SESSION['correo']) && isset($_SESSION['id_rol'])) {
       <li><a id="articles-button" href="articulos.php" style="color: white;">Articulos</a></li>
       <li><a id="request-button" href="pedidos.php" style="color: white;">Pedidos</a></li>
 
-      <li class="nav-item dropdown" style ="color:black;">
+      <li class="nav-item dropdown" style="color:black;">
         <a id="contact-button" class="nav-link dropdown-toggle contact-link" href="#" id="navbarDropdown" role="button"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
@@ -79,10 +78,7 @@ if (isset($_SESSION['correo']) && isset($_SESSION['id_rol'])) {
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
           <p>Telefono: </p><b class="dropdown-item" href="#">722 554 5526</a>
-          <p>Correo: </p><b class="dropdown-item" href="#">srobledon@toluca.tecnm.mx</a>
-          <p>Liga a Github: </p><b class="dropdown-item"
-            href="https://github.com/Limoncito160/ProyectoPrograWeb">Limoncito160/ProyectoPrograWeb</a>
-
+            <p>Correo: </p><b class="dropdown-item" href="#">srobledon@toluca.tecnm.mx</a>
 
       </li>
     </ul>
@@ -102,7 +98,7 @@ if (isset($_SESSION['correo']) && isset($_SESSION['id_rol'])) {
       <?php } else { ?>
 
           <!--BOTONES DEL ADMINISTRADOR -->
-          <li><a href="" style="color: white;"
+          <li><a href="http://localhost/phpmyadmin/index.php" style="color: white;"
               onclick="event.preventDefault(); document.getElementById('manage-form').submit();">Gestionar</a></li>
           <li><a href="" style="color: white;"
               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a></li>
