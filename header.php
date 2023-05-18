@@ -53,4 +53,3 @@ if (isset($_POST['logout'])) {
 ?>
 
   </nav>
-</body>
