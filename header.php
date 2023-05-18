@@ -40,33 +40,47 @@ if (isset($_SESSION['correo']) && isset($_SESSION['id_rol'])) {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <!--Variables-->
+  <style>
+    /* Estilo inicial para los enlaces de navegación */
+    .navbar-nav li a {
+      color: white !important;
+    }
+
+    /* Estilo al pasar el mouse por encima */
+    .navbar-nav li a:hover {
+      color: black !important;
+    }
+
+  </style>
+
 </head>
 
 <body style="font-family:Montserrat">
   <!--Barra de navegación-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:black; display:flex;">
 
-    <p class="navbar-brand disable" style="color: white;">Pincheles S.A. de C.V.</p>
+  <p class="navbar-brand disable" style="color: white;">Pincheles S.A. de C.V.</p>
 
     <ul class="nav navbar-nav">
-      <li class="active"><a id="home-button" href="home.php" style="color: white;"><span class="glyphicon glyphicon-home"></span> Pagina
+      <li class="active"><a id="home-button" href="home.php" style="color: white;"><span
+            class="glyphicon glyphicon-home"></span> Pagina
           Principal</a></li>
 
       <li><a id="articles-button" href="articulos.php" style="color: white;">Articulos</a></li>
-      <li><a id="request-button"href="pedidos.php" style="color: white;">Pedidos</a></li>
+      <li><a id="request-button" href="pedidos.php" style="color: white;">Pedidos</a></li>
 
-      <li class="nav-item dropdown">
-        <a id="contact-button" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
+      <li class="nav-item dropdown" style ="color:black;">
+        <a id="contact-button" class="nav-link dropdown-toggle contact-link" href="#" id="navbarDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-          <span style="color: white; font-family:Montserrat"> Contacto
+          <span class="contact" style="color: white; font-family:Montserrat"> Contacto
         </a>
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-          <p>Telefono: </p><a class="dropdown-item" href="#">722 554 5526</a>
-          <p>Correo: </p><a class="dropdown-item" href="#">srobledon@toluca.tecnm.mx</a>
-          <p>Liga a Github: </p><a class="dropdown-item"
+          <p>Telefono: </p><b class="dropdown-item" href="#">722 554 5526</a>
+          <p>Correo: </p><b class="dropdown-item" href="#">srobledon@toluca.tecnm.mx</a>
+          <p>Liga a Github: </p><b class="dropdown-item"
             href="https://github.com/Limoncito160/ProyectoPrograWeb">Limoncito160/ProyectoPrograWeb</a>
 
 
@@ -120,14 +134,14 @@ if (isset($_SESSION['correo']) && isset($_SESSION['id_rol'])) {
     }
     ?>
 
-<?php
+    <?php
     if (isset($_POST['login'])) {
       header('Location: login.php');
       exit();
     }
     ?>
 
-<?php
+    <?php
     if (isset($_POST['manage'])) {
       header('Location: manage.php');
       exit();
